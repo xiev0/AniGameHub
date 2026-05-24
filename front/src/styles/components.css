@@ -1,0 +1,956 @@
+/* ── Hero section ────────────────────────────────────────────── */
+.hero {
+  position: relative;
+  border-radius: var(--radius-2xl);
+  overflow: hidden;
+  padding: 48px 40px;
+  margin-bottom: 32px;
+  min-height: 280px;
+  display: flex;
+  align-items: flex-end;
+  background: var(--gradient-hero);
+}
+
+.hero-orbs {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.hero-orb {
+  position: absolute;
+  border-radius: var(--radius-full);
+  filter: blur(60px);
+  opacity: 0.35;
+}
+
+.hero-orb-1 {
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, #6c8ef7, transparent);
+  top: -80px;
+  right: 80px;
+  animation: orb-move 12s ease-in-out infinite;
+}
+
+.hero-orb-2 {
+  width: 250px;
+  height: 250px;
+  background: radial-gradient(circle, #a78bfa, transparent);
+  bottom: -60px;
+  right: 250px;
+  animation: orb-move2 15s ease-in-out infinite;
+}
+
+.hero-orb-3 {
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, #4dd9d6, transparent);
+  top: 20px;
+  left: 40%;
+  opacity: 0.2;
+  animation: orb-move 18s ease-in-out infinite reverse;
+}
+
+/* Grid pattern overlay */
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+}
+
+.hero-eyebrow {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent-cyan);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.hero-eyebrow::before {
+  content: '';
+  display: block;
+  width: 20px;
+  height: 1px;
+  background: var(--accent-cyan);
+}
+
+.hero-title {
+  font-size: 2.8rem;
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 12px;
+  max-width: 500px;
+}
+
+.hero-title span {
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero-desc {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  max-width: 420px;
+  margin-bottom: 28px;
+  line-height: 1.7;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.hero-stats {
+  position: absolute;
+  top: 32px;
+  right: 32px;
+  display: flex;
+  gap: 12px;
+}
+
+.hero-stat {
+  background: rgba(13, 14, 26, 0.6);
+  backdrop-filter: blur(16px);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  padding: 14px 18px;
+  text-align: center;
+  min-width: 80px;
+}
+
+.hero-stat-value {
+  font-size: 1.4rem;
+  font-weight: 800;
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero-stat-label {
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-top: 2px;
+}
+
+/* ── Media Card ──────────────────────────────────────────────── */
+.media-card {
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  background: var(--bg-card);
+  border: 1px solid var(--glass-border);
+  transition: all var(--t-slow);
+  cursor: pointer;
+  position: relative;
+  group: true;
+}
+
+.media-card:hover {
+  transform: translateY(-4px) scale(1.01);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--glass-border-active);
+}
+
+.media-card-cover {
+  position: relative;
+  aspect-ratio: 2/3;
+  overflow: hidden;
+}
+
+.media-card-cover-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--t-slow);
+}
+
+.media-card:hover .media-card-cover-img {
+  transform: scale(1.06);
+}
+
+/* Gradient overlay on cover */
+.media-card-cover::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(13,14,26,0.9) 0%, transparent 60%);
+  opacity: 0;
+  transition: opacity var(--t-base);
+}
+
+.media-card:hover .media-card-cover::after {
+  opacity: 1;
+}
+
+/* Cover placeholder */
+.cover-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.5rem;
+}
+
+.media-card-overlay {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.media-card-body {
+  padding: 14px;
+}
+
+.media-card-title {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.media-card-meta {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.media-card-rating {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 8px;
+  font-size: 0.72rem;
+  color: var(--accent-amber);
+  font-weight: 600;
+}
+
+/* ── Game Card ───────────────────────────────────────────────── */
+.game-card {
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  background: var(--bg-card);
+  border: 1px solid var(--glass-border);
+  transition: all var(--t-slow);
+  cursor: pointer;
+}
+
+.game-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--glass-border-active);
+}
+
+.game-card-banner {
+  position: relative;
+  height: 160px;
+  overflow: hidden;
+}
+
+.game-banner-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3.5rem;
+}
+
+.game-card-banner::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 50%;
+  background: linear-gradient(to top, var(--bg-card), transparent);
+}
+
+.game-hours-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: rgba(0,0,0,0.7);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-md);
+  padding: 4px 10px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--accent-amber);
+}
+
+.game-card-body {
+  padding: 14px;
+}
+
+.game-card-title {
+  font-size: 0.925rem;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.game-card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-bottom: 10px;
+}
+
+.game-tag {
+  font-size: 0.65rem;
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+  background: var(--glass-light);
+  border: 1px solid var(--glass-border);
+  color: var(--text-muted);
+}
+
+/* ── Continue watching card ──────────────────────────────────── */
+.continue-card {
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  background: var(--bg-card);
+  border: 1px solid var(--glass-border);
+  transition: all var(--t-base);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+}
+
+.continue-card:hover {
+  border-color: var(--glass-border-active);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.continue-card-thumb {
+  position: relative;
+  aspect-ratio: 16/9;
+  overflow: hidden;
+}
+
+.continue-thumb-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.5rem;
+  position: relative;
+}
+
+.continue-thumb-placeholder::after {
+  content: '▶';
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(8px);
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  color: white;
+  opacity: 0;
+  transition: opacity var(--t-base);
+}
+
+.continue-card:hover .continue-thumb-placeholder::after {
+  opacity: 1;
+}
+
+.continue-card-info {
+  padding: 12px 14px;
+  flex: 1;
+}
+
+.continue-card-title {
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-bottom: 3px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.continue-card-ep {
+  font-size: 0.68rem;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+}
+
+/* ── Stats card ──────────────────────────────────────────────── */
+.stat-card {
+  background: var(--bg-card);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-xl);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: all var(--t-base);
+}
+
+.stat-card:hover {
+  border-color: var(--glass-border-active);
+  background: var(--bg-card-hover);
+}
+
+.stat-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.stat-card-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+}
+
+.stat-card-value {
+  font-size: 2rem;
+  font-weight: 800;
+}
+
+.stat-card-label {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+}
+
+.stat-card-trend {
+  font-size: 0.7rem;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.trend-up   { color: var(--accent-green); }
+.trend-down { color: var(--accent-pink); }
+
+/* ── Music player ────────────────────────────────────────────── */
+.player-card {
+  background: var(--bg-panel);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-2xl);
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.player-album {
+  width: 120px;
+  height: 120px;
+  border-radius: var(--radius-xl);
+  background: var(--gradient-music);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  margin: 0 auto;
+  box-shadow: 0 8px 32px rgba(52, 211, 153, 0.3);
+  animation: float 4s ease-in-out infinite;
+}
+
+.player-track-info {
+  text-align: center;
+}
+
+.player-track-name {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.player-track-artist {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.player-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.player-time-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.68rem;
+  color: var(--text-muted);
+}
+
+.player-progress {
+  height: 4px;
+  border-radius: var(--radius-full);
+  background: var(--bg-elevated);
+  cursor: pointer;
+  position: relative;
+}
+
+.player-progress-fill {
+  height: 100%;
+  border-radius: var(--radius-full);
+  background: var(--gradient-music);
+  width: 35%;
+}
+
+.player-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+
+.ctrl-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  cursor: pointer;
+  color: var(--text-secondary);
+  transition: all var(--t-base);
+  background: var(--glass-light);
+  border: 1px solid var(--glass-border);
+}
+
+.ctrl-btn:hover {
+  color: var(--text-primary);
+  background: var(--glass-hard);
+}
+
+.ctrl-btn-play {
+  width: 48px;
+  height: 48px;
+  background: var(--gradient-music);
+  color: #fff;
+  border: none;
+  box-shadow: 0 0 20px rgba(52,211,153,0.35);
+  font-size: 1.2rem;
+}
+
+.ctrl-btn-play:hover {
+  transform: scale(1.08);
+  box-shadow: 0 0 30px rgba(52,211,153,0.5);
+}
+
+/* Sound bars visualizer */
+.visualizer {
+  display: flex;
+  align-items: flex-end;
+  gap: 3px;
+  height: 24px;
+  justify-content: center;
+}
+
+.vis-bar {
+  width: 3px;
+  background: var(--gradient-music);
+  border-radius: var(--radius-full);
+  animation: sound-bar var(--duration, 0.8s) ease-in-out infinite;
+  animation-delay: var(--delay, 0s);
+}
+
+/* ── Profile card ────────────────────────────────────────────── */
+.profile-hero {
+  position: relative;
+  border-radius: var(--radius-2xl);
+  overflow: hidden;
+  padding: 40px;
+  background: var(--bg-panel);
+  border: 1px solid var(--glass-border);
+  margin-bottom: 24px;
+}
+
+.profile-banner {
+  position: absolute;
+  inset: 0;
+  height: 180px;
+  background: linear-gradient(135deg, #1a0a2e 0%, #0d1a3a 50%, #0a1a2e 100%);
+}
+
+.profile-banner-orbs {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.profile-banner-orb {
+  position: absolute;
+  border-radius: var(--radius-full);
+  filter: blur(40px);
+  opacity: 0.4;
+}
+
+.profile-content {
+  position: relative;
+  z-index: 1;
+  margin-top: 120px;
+}
+
+.profile-avatar-wrapper {
+  position: relative;
+  width: 88px;
+  height: 88px;
+  margin-bottom: 16px;
+}
+
+.profile-avatar {
+  width: 88px;
+  height: 88px;
+  border-radius: var(--radius-full);
+  background: var(--gradient-anime);
+  border: 3px solid var(--bg-surface);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  font-weight: 700;
+  box-shadow: 0 0 0 1px var(--accent-primary);
+}
+
+.profile-online-dot {
+  position: absolute;
+  bottom: 4px;
+  right: 4px;
+  width: 14px;
+  height: 14px;
+  background: var(--accent-green);
+  border-radius: var(--radius-full);
+  border: 2px solid var(--bg-surface);
+  animation: glow-pulse 2s ease infinite;
+}
+
+.profile-name {
+  font-size: 1.4rem;
+  font-weight: 800;
+  margin-bottom: 4px;
+}
+
+.profile-username {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-bottom: 12px;
+}
+
+.profile-badges-row {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.achievement-card {
+  background: var(--bg-card);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-xl);
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  transition: all var(--t-base);
+  cursor: pointer;
+}
+
+.achievement-card:hover {
+  border-color: var(--glass-border-active);
+  background: var(--bg-card-hover);
+}
+
+.achievement-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  flex-shrink: 0;
+}
+
+.achievement-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.achievement-name {
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+
+.achievement-desc {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+}
+
+/* ── Anime list table ────────────────────────────────────────── */
+.anime-list-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 10px 14px;
+  border-radius: var(--radius-lg);
+  transition: all var(--t-base);
+  cursor: pointer;
+}
+
+.anime-list-item:hover {
+  background: var(--glass-light);
+}
+
+.anime-list-rank {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  width: 24px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.anime-list-thumb {
+  width: 40px;
+  height: 56px;
+  border-radius: var(--radius-md);
+  object-fit: cover;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+}
+
+.anime-list-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.anime-list-title {
+  font-size: 0.875rem;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 3px;
+}
+
+.anime-list-meta {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+}
+
+.anime-list-score {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--accent-amber);
+  flex-shrink: 0;
+}
+
+/* ── Genre tag cloud ─────────────────────────────────────────── */
+.genre-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: 500;
+  background: var(--bg-card);
+  border: 1px solid var(--glass-border);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all var(--t-base);
+}
+
+.genre-tag:hover,
+.genre-tag.active {
+  background: rgba(108,142,247,0.12);
+  border-color: var(--accent-primary);
+  color: var(--accent-primary);
+}
+
+/* ── Tabs ────────────────────────────────────────────────────── */
+.tabs {
+  display: flex;
+  gap: 4px;
+  background: var(--bg-panel);
+  border-radius: var(--radius-full);
+  padding: 4px;
+  width: fit-content;
+  border: 1px solid var(--glass-border);
+  margin-bottom: 24px;
+}
+
+.tab-item {
+  padding: 8px 18px;
+  border-radius: var(--radius-full);
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all var(--t-base);
+}
+
+.tab-item.active {
+  background: var(--bg-card-hover);
+  color: var(--text-primary);
+  box-shadow: var(--shadow-sm);
+}
+
+.tab-item:hover:not(.active) {
+  color: var(--text-secondary);
+}
+
+/* ── Grid layouts ────────────────────────────────────────────── */
+.grid-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 16px;
+}
+
+.grid-games {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+.grid-continue {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+.grid-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 16px;
+}
+
+.grid-achievements {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 12px;
+}
+
+/* ── Track list ──────────────────────────────────────────────── */
+.track-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 10px 14px;
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  transition: all var(--t-base);
+}
+
+.track-item:hover {
+  background: var(--glass-light);
+}
+
+.track-item.playing {
+  background: rgba(52,211,153,0.08);
+}
+
+.track-num {
+  width: 20px;
+  text-align: center;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.track-item.playing .track-num {
+  color: var(--accent-green);
+}
+
+.track-art {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+
+.track-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.track-title {
+  font-size: 0.875rem;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.track-artist {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+}
+
+.track-duration {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  flex-shrink: 0;
+}
+
+/* ── Notification dot ────────────────────────────────────────── */
+.notif-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: var(--radius-full);
+  background: var(--accent-pink);
+  display: inline-block;
+  animation: pulse 2s ease infinite;
+}
+
+/* ── Scrollable row ──────────────────────────────────────────── */
+.scroll-row {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  padding-bottom: 8px;
+  scrollbar-width: none;
+}
+.scroll-row::-webkit-scrollbar { display: none; }
