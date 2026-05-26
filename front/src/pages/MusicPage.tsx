@@ -1,5 +1,5 @@
-import Topbar from '../components/Topbar.jsx';
-import StatCard from '../components/StatCard.jsx';
+import Topbar from '../components/Topbar.tsx';
+import StatCard from '../components/StatCard.tsx';
 
 const tracks = [
   { num: 1,  title: 'Unravel',               artist: 'TK from Ling Tosite Sigure', duration: '3:34', emoji: '🎸', color: 'linear-gradient(135deg,#1a0a2a,#2a0a1a)', playing: true },

@@ -1,10 +1,10 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import Sidebar from './components/Sidebar.jsx';
-import HomePage    from './pages/HomePage.jsx';
-import AnimePage   from './pages/AnimePage.jsx';
-import GamesPage   from './pages/GamesPage.jsx';
-import MusicPage   from './pages/MusicPage.jsx';
-import ProfilePage from './pages/ProfilePage.jsx';
+import Sidebar from './components/Sidebar.tsx';
+import HomePage    from './pages/HomePage.tsx';
+import AnimePage   from './pages/AnimePage.tsx';
+import GamesPage   from './pages/GamesPage.tsx';
+import MusicPage   from './pages/MusicPage.tsx';
+import ProfilePage from './pages/ProfilePage.tsx';
 import './styles/globals.css';
 import './styles/sidebar.css';
 import './styles/components.css';

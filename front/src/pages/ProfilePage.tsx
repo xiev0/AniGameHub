@@ -1,5 +1,5 @@
-import Topbar from '../components/Topbar.jsx';
-import StatCard from '../components/StatCard.jsx';
+import Topbar from '../components/Topbar.tsx';
+import StatCard from '../components/StatCard.tsx';
 
 const achievements = [
   { icon: '🎌', name: 'Ветеран аниме',    desc: 'Посмотрено 30+ аниме-сериалов',           earned: true,  color: 'linear-gradient(135deg,rgba(244,114,182,0.15),rgba(167,139,250,0.15))',  accent: 'var(--accent-pink)' },

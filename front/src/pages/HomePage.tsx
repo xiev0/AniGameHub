@@ -1,7 +1,7 @@
-import Topbar from '../components/Topbar.jsx';
-import StatCard from '../components/StatCard.jsx';
-import MediaCard from '../components/MediaCard.jsx';
-import GameCard from '../components/GameCard.jsx';
+import Topbar from '../components/Topbar.tsx';
+import StatCard from '../components/StatCard.tsx';
+import MediaCard from '../components/MediaCard.tsx';
+import GameCard from '../components/GameCard.tsx';
 
 /* ── Mock data ───────────────────────────────────────────────── */
 const continueWatching = [

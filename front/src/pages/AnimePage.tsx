@@ -1,6 +1,6 @@
-import Topbar from '../components/Topbar.jsx';
-import MediaCard from '../components/MediaCard.jsx';
-import StatCard from '../components/StatCard.jsx';
+import Topbar from '../components/Topbar.tsx';
+import MediaCard from '../components/MediaCard.tsx';
+import StatCard from '../components/StatCard.tsx';
 
 const animeList = [
   { title: 'Фрирен: Провожающая в последний путь', genre: 'Фэнтези / Приключения', score: 9.4, episodes: 28, emoji: '🧝', idx: 0, status: 'Смотрю' },

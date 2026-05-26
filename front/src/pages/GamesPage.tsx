@@ -1,6 +1,6 @@
-import Topbar from '../components/Topbar.jsx';
-import GameCard from '../components/GameCard.jsx';
-import StatCard from '../components/StatCard.jsx';
+import Topbar from '../components/Topbar.tsx';
+import GameCard from '../components/GameCard.tsx';
+import StatCard from '../components/StatCard.tsx';
 
 const games = [
   { title: 'Elden Ring',           hours: 148, genres: ['РПГ', 'Souls-like'],     rating: 9.8, emoji: '⚔️', idx: 0 },

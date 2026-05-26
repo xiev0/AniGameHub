@@ -1,3 +1,1 @@
-# AniGameHub# AniGameHub
-# AniGameHub
 # AniGameHub
