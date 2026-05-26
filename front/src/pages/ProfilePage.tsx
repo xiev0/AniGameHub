@@ -24,7 +24,7 @@ const favoriteChars = [
 const activityLog = [
   { icon: '✅', text: 'Досмотрела 1-й сезон Человека-бензопилы',      time: '2 часа назад',   accent: 'green' },
   { icon: '⭐', text: 'Оценила Фрирен на 10/10',                  time: '4 часа назад',   accent: 'amber' },
-  { icon: '🎮', text: 'Играла в Elden Ring 3 часа',        time: '6 hours ago',   accent: 'amber' },
+  { icon: '🎮', text: 'Играла в Elden Ring 3 часа',        time: '6 часов назад',   accent: 'amber' },
   { icon: '🏆', text: 'Получила достижение: Меломан',     time: 'Вчера',     accent: 'pink' },
   { icon: '🔖', text: 'Добавила 2-й сезон Саги о Винланде в список просмотра',   time: '2 дня назад',    accent: 'blue' },
   { icon: '🎵', text: 'Создала плейлист: Эпичные опенинги',       time: '3 дня назад',    accent: 'green' },
@@ -206,11 +206,11 @@ export default function ProfilePage() {
             <div className="section-title" style={{ marginBottom: 14 }}>Настройка профиля</div>
             <div className="flex flex-col gap-3">
               {[
-                { label: 'Цвет темы', value: 'Theme Color' },
-                { label: 'Аватар', value: 'Avatar' },
-                { label: 'Баннер', value: 'Banner' },
-                { label: 'Отображаемое имя', value: 'Display Name' },
-                { label: 'Статус', value: 'Status' }
+                { label: 'Цвет темы', value: 'цвет-темы' },
+                { label: 'Аватар', value: 'аватар' },
+                { label: 'Баннер', value: 'баннер' },
+                { label: 'Отображаемое имя', value: 'отображаемое-имя' },
+                { label: 'Статус', value: 'статус' }
               ].map((item) => (
                 <div key={item.value} className="flex justify-between items-center" style={{
                   padding: '10px 12px', borderRadius: 'var(--radius-lg)',

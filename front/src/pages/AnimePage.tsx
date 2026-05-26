@@ -3,16 +3,16 @@ import MediaCard from '../components/MediaCard.jsx';
 import StatCard from '../components/StatCard.jsx';
 
 const animeList = [
-  { title: 'Фрирен: Провожающая в последний путь', genre: 'Фэнтези / Приключения', score: 9.4, episodes: 28, emoji: '🧝', idx: 0, status: 'Watching' },
-  { title: 'Человек-бензопила',                   genre: 'Экшен / Ужасы',     score: 8.7, episodes: 12, emoji: '⛓️', idx: 1, status: 'Completed' },
-  { title: 'Синяя тюрьма',                      genre: 'Спорт',              score: 8.5, episodes: 24, emoji: '⚽', idx: 2, status: 'Watching' },
-  { title: 'Семья шпиона',                   genre: 'Комедия / Экшен',     score: 8.8, episodes: 25, emoji: '🕵️', idx: 3, status: 'Completed' },
-  { title: 'Магическая битва',                 genre: 'Сверхъестественное',        score: 9.0, episodes: 24, emoji: '👊', idx: 4, status: 'Watching' },
-  { title: 'Сага о Винланде',                   genre: 'Исторический',          score: 9.2, episodes: 24, emoji: '🪓', idx: 5, status: 'Plan' },
-  { title: 'Подземелье вкусностей',                  genre: 'Фэнтези / Кулинария',   score: 9.1, episodes: 24, emoji: '🍳', idx: 0, status: 'Watching' },
-  { title: 'Мастер муси',                       genre: 'Сверхъестественное / Повседневность',score: 9.3, episodes: 26, emoji: '🌿', idx: 1, status: 'Completed' },
-  { title: 'Стальной алхимик: Братство',         genre: 'Приключения / Фэнтези', score: 9.6, episodes: 64, emoji: '⚗️', idx: 2, status: 'Completed' },
-  { title: 'Врата Штейна',                    genre: 'Научная фантастика / Триллер',   score: 9.5, episodes: 24, emoji: '⏱', idx: 3, status: 'Completed' },
+  { title: 'Фрирен: Провожающая в последний путь', genre: 'Фэнтези / Приключения', score: 9.4, episodes: 28, emoji: '🧝', idx: 0, status: 'Смотрю' },
+  { title: 'Человек-бензопила',                   genre: 'Экшен / Ужасы',     score: 8.7, episodes: 12, emoji: '⛓️', idx: 1, status: 'Просмотрено' },
+  { title: 'Синяя тюрьма',                      genre: 'Спорт',              score: 8.5, episodes: 24, emoji: '⚽', idx: 2, status: 'Смотрю' },
+  { title: 'Семья шпиона',                   genre: 'Комедия / Экшен',     score: 8.8, episodes: 25, emoji: '🕵️', idx: 3, status: 'Просмотрено' },
+  { title: 'Магическая битва',                 genre: 'Сверхъестественное',        score: 9.0, episodes: 24, emoji: '👊', idx: 4, status: 'Смотрю' },
+  { title: 'Сага о Винланде',                   genre: 'Исторический',          score: 9.2, episodes: 24, emoji: '🪓', idx: 5, status: 'В планах' },
+  { title: 'Подземелье вкусностей',                  genre: 'Фэнтези / Кулинария',   score: 9.1, episodes: 24, emoji: '🍳', idx: 0, status: 'Смотрю' },
+  { title: 'Мастер муси',                       genre: 'Сверхъестественное / Повседневность',score: 9.3, episodes: 26, emoji: '🌿', idx: 1, status: 'Просмотрено' },
+  { title: 'Стальной алхимик: Братство',         genre: 'Приключения / Фэнтези', score: 9.6, episodes: 64, emoji: '⚗️', idx: 2, status: 'Просмотрено' },
+  { title: 'Врата Штейна',                    genre: 'Научная фантастика / Триллер',   score: 9.5, episodes: 24, emoji: '⏱', idx: 3, status: 'Просмотрено' },
 ];
 
 const listData = [

@@ -21,13 +21,11 @@ export default function MediaCard({ title, genre, score, episodes, emoji, idx = 
         <div className="media-card-overlay">
           {status && (
             <span className={`badge badge-${
-              status === 'Watching' || status === 'Смотрю' ? 'cyan' :
-              status === 'Completed' || status === 'Просмотрено' ? 'green' :
-              status === 'Plan' || status === 'В планах' ? 'primary' : 'pink'
+              status === 'Смотрю'       ? 'cyan' :
+              status === 'Просмотрено' ? 'green' :
+              status === 'В планах'   ? 'primary' : 'pink'
             }`}>
-              {status === 'Watching' || status === 'Смотрю' ? 'Смотрю' :
-               status === 'Completed' || status === 'Просмотрено' ? 'Просмотрено' :
-               status === 'Plan' || status === 'В планах' ? 'В планах' : status}
+              {status}
             </span>
           )}
         </div>

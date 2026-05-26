@@ -12,11 +12,11 @@ const continueWatching = [
 ];
 
 const recentAnime = [
-  { title: 'Фрирен: Провожающая в последний путь', genre: 'Фэнтези', score: 9.4, episodes: 28, emoji: '🧝', idx: 0, status: 'Watching' },
-  { title: 'Человек-бензопила', genre: 'Экшен', score: 8.7, episodes: 12, emoji: '⛓️', idx: 1, status: 'Completed' },
-  { title: 'Синяя тюрьма', genre: 'Спорт', score: 8.5, episodes: 24, emoji: '⚽', idx: 2, status: 'Watching' },
-  { title: 'Семья шпиона', genre: 'Комедия', score: 8.8, episodes: 25, emoji: '🕵️', idx: 3, status: 'Completed' },
-  { title: 'Магическая битва', genre: 'Сверхъестественное', score: 9.0, episodes: 24, emoji: '👊', idx: 4, status: 'Watching' },
+  { title: 'Фрирен: Провожающая в последний путь', genre: 'Фэнтези', score: 9.4, episodes: 28, emoji: '🧝', idx: 0, status: 'Смотрю' },
+  { title: 'Человек-бензопила', genre: 'Экшен', score: 8.7, episodes: 12, emoji: '⛓️', idx: 1, status: 'Просмотрено' },
+  { title: 'Синяя тюрьма', genre: 'Спорт', score: 8.5, episodes: 24, emoji: '⚽', idx: 2, status: 'Смотрю' },
+  { title: 'Семья шпиона', genre: 'Комедия', score: 8.8, episodes: 25, emoji: '🕵️', idx: 3, status: 'Просмотрено' },
+  { title: 'Магическая битва', genre: 'Сверхъестественное', score: 9.0, episodes: 24, emoji: '👊', idx: 4, status: 'Смотрю' },
 ];
 
 const recentGames = [
