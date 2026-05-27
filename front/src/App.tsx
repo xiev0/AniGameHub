@@ -1,5 +1,6 @@
 import { BrowserRouter } from 'react-router-dom';
 import Sidebar from '@/widgets/sidebar/Sidebar'
+import { AppRouter } from '@/app/router/AppRouter.tsx'
 import '@/styles/globals.css';
 import '@/styles/sidebar.css';
 import '@/styles/components.css';

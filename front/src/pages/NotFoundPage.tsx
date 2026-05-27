@@ -11,7 +11,7 @@ export default function NotFoundPage() {
             <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem' }}>
                 Этот раздел находится в разработке. Загляните позже!
             </p>
-            <link to="/" className="btn btn-primary" style={{ marginTop: 8 }}>← На главную панель</link>
+            <Link to="/" className="btn btn-primary" style={{ marginTop: 8 }}>← На главную панель</Link>
         </div>
 
     );

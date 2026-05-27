@@ -1,19 +1,11 @@
 import Topbar from '../components/Topbar.tsx';
 import MediaCard from '../components/MediaCard.tsx';
 import StatCard from '../components/StatCard.tsx';
+import {useAnimeStore} from '@/entities/anime/model/anime.store'
 
-const animeList = [
-  { title: 'Фрирен: Провожающая в последний путь', genre: 'Фэнтези / Приключения', score: 9.4, episodes: 28, emoji: '🧝', idx: 0, status: 'Смотрю' },
-  { title: 'Человек-бензопила',                   genre: 'Экшен / Ужасы',     score: 8.7, episodes: 12, emoji: '⛓️', idx: 1, status: 'Просмотрено' },
-  { title: 'Синяя тюрьма',                      genre: 'Спорт',              score: 8.5, episodes: 24, emoji: '⚽', idx: 2, status: 'Смотрю' },
-  { title: 'Семья шпиона',                   genre: 'Комедия / Экшен',     score: 8.8, episodes: 25, emoji: '🕵️', idx: 3, status: 'Просмотрено' },
-  { title: 'Магическая битва',                 genre: 'Сверхъестественное',        score: 9.0, episodes: 24, emoji: '👊', idx: 4, status: 'Смотрю' },
-  { title: 'Сага о Винланде',                   genre: 'Исторический',          score: 9.2, episodes: 24, emoji: '🪓', idx: 5, status: 'В планах' },
-  { title: 'Подземелье вкусностей',                  genre: 'Фэнтези / Кулинария',   score: 9.1, episodes: 24, emoji: '🍳', idx: 0, status: 'Смотрю' },
-  { title: 'Мастер муси',                       genre: 'Сверхъестественное / Повседневность',score: 9.3, episodes: 26, emoji: '🌿', idx: 1, status: 'Просмотрено' },
-  { title: 'Стальной алхимик: Братство',         genre: 'Приключения / Фэнтези', score: 9.6, episodes: 64, emoji: '⚗️', idx: 2, status: 'Просмотрено' },
-  { title: 'Врата Штейна',                    genre: 'Научная фантастика / Триллер',   score: 9.5, episodes: 24, emoji: '⏱', idx: 3, status: 'Просмотрено' },
-];
+const animeList = useAnimeStore(
+    (state) => state.animeList
+)
 
 const listData = [
   { rank: 1,  title: 'Стальной алхимик: Братство', genre: 'Приключения',  eps: 64, score: '9.6', emoji: '⚗️', color: 'linear-gradient(135deg,#2a1a0a,#1a0a20)' },
