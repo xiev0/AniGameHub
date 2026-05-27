@@ -1,11 +1,8 @@
-import Topbar from '../components/Topbar.tsx';
-import MediaCard from '../components/MediaCard.tsx';
-import StatCard from '../components/StatCard.tsx';
+import Topbar from '@/components/Topbar';
+import MediaCard from '@/components/MediaCard';
+import StatCard from '@/components/StatCard';
 import {useAnimeStore} from '@/entities/anime/model/anime.store'
-
-const animeList = useAnimeStore(
-    (state) => state.animeList
-)
+import {useState} from "react";
 
 const listData = [
   { rank: 1,  title: 'Стальной алхимик: Братство', genre: 'Приключения',  eps: 64, score: '9.6', emoji: '⚗️', color: 'linear-gradient(135deg,#2a1a0a,#1a0a20)' },
@@ -28,6 +25,19 @@ const characters = [
 ];
 
 export default function AnimePage() {
+
+  const [isOpen, setIsOpen] = useState(false)
+  const [title, setTitle] = useState('')
+
+  const animeList = useAnimeStore(
+      (state) => state.animeList
+  )
+
+  const addAnime = useAnimeStore(
+      (state) => state.addAnime
+  )
+
+  console.log(animeList)
   return (
     <>
       <Topbar title="Аниме" subtitle="Твоя персональная библиотека аниме" />
@@ -89,7 +99,43 @@ export default function AnimePage() {
         <div style={{ flex: '1 1 520px' }}>
           <div className="section-header">
             <div className="section-title">Все аниме</div>
-            <button className="btn btn-ghost btn-sm">+ Добавить</button>
+            <button
+                className="btn btn-ghost btn-sm"
+                onClick={() => setIsOpen(true)}
+            >
+              + Добавить
+            </button>
+
+            {
+                isOpen && (
+                    <div>
+                      FORM
+                      <input
+                          value={title}
+                          onChange={(e) => setTitle(e.target.value)}
+                      />
+                      <button
+                          onClick={() => {
+                            addAnime({
+                              id: crypto.randomUUID(),
+                              title,
+                              notes: '',
+                              status: 'planned',
+                              genres: [],
+                              rating: 0,
+                              episodesWatched: 0,
+                              totalEpisodes: 0,
+                            })
+
+                            setIsOpen(false)
+                            setTitle('')
+                          }}
+                      >
+                        Добавить
+                      </button>
+                    </div>
+                )
+            }
           </div>
           <div className="grid-cards stagger">
             {animeList.map((a, i) => <MediaCard key={i} {...a} />)}

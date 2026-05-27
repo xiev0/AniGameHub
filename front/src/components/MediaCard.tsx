@@ -1,3 +1,4 @@
+
 /* Anime cover colour palettes for placeholders */
 const coverColors = [
   'linear-gradient(135deg,#f472b6,#a78bfa)',
@@ -8,15 +9,15 @@ const coverColors = [
   'linear-gradient(135deg,#f472b6,#fbbf24)',
 ];
 
-export default function MediaCard({ title, genre, score, episodes, emoji, idx = 0, status }) {
+export default function MediaCard({ id, title, notes, status, genres, rating, episodesWatched, totalEpisodes }) {
   return (
     <div className="media-card anim-fade-up">
       <div className="media-card-cover">
         <div
           className="cover-placeholder"
-          style={{ background: coverColors[idx % coverColors.length] }}
+          style={{ background: coverColors[coverColors.length] }}
         >
-          <span style={{ fontSize: '2.5rem' }}>{emoji}</span>
+          <span style={{ fontSize: '2.5rem' }}></span>
         </div>
         <div className="media-card-overlay">
           {status && (
@@ -33,13 +34,13 @@ export default function MediaCard({ title, genre, score, episodes, emoji, idx = 
       <div className="media-card-body">
         <div className="media-card-title">{title}</div>
         <div className="media-card-meta">
-          {genre && <span>{genre}</span>}
-          {episodes && <><span>·</span><span>{episodes} эп.</span></>}
+          {genres && <span>{genres}</span>}
+          {totalEpisodes && <><span>·</span><span>{totalEpisodes} эп.</span></>}
         </div>
-        {score && (
+        {rating && (
           <div className="media-card-rating">
             <span>⭐</span>
-            <span>{score}</span>
+            <span>{rating}</span>r
           </div>
         )}
       </div>
