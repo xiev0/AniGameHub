@@ -6,7 +6,7 @@ import MusicPage   from '@/pages/MusicPage';
 import ProfilePage from '@/pages/ProfilePage';
 import NotFoundPage from '@/pages/NotFoundPage';
 
-export default function AppRouter(){
+export default function AppRouter() {
   return (
     <Routes>
             <Route path="/"         element={<HomePage />} />

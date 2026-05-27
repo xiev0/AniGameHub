@@ -1,5 +1,5 @@
 import { NavLink, useLocation } from 'react-router-dom';
-import '../styles/sidebar.css';
+import '@/styles/sidebar.css';
 
 const navItems = [
     { to: '/',        icon: '⊞',  label: 'Панель' },
