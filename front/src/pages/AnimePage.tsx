@@ -28,6 +28,11 @@ export default function AnimePage() {
 
   const [isOpen, setIsOpen] = useState(false)
   const [title, setTitle] = useState('')
+  const [note, setNote] = useState('')
+  const [rating, setRating] = useState(0)
+  const [status, setStatus] = useState('planned')
+  const [activeStatus, setActiveStatus] = useState('all')
+  const [activegStatus, setActivegStatus] = useState('all')
 
   const animeList = useAnimeStore(
       (state) => state.animeList
@@ -41,14 +46,27 @@ export default function AnimePage() {
       (state) => state.removeAnime
   )
 
-  const [activeStatus, setActiveStatus] = useState('all')
-
   const animeTabs = [
     { label: 'Все', value: 'all' },
     { label: 'Смотрю', value: 'watching' },
     { label: 'Просмотрено', value: 'completed' },
     { label: 'В планах', value: 'planned' },
     { label: 'Брошено', value: 'dropped' },
+    {label: 'Приостановлено', value: 'paused'}
+  ]
+
+  const genresTabs = [
+    {label: 'Все', value: 'all'},
+    {label: 'Экшен', value: 'Action'},
+    {label: 'Фэнтези', value: 'Fantasy'},
+    {label: 'Романтика', value: 'Romance'},
+    {label: 'Научная Фантастика', value: 'Science Fiction'},
+    {label: 'Спорт', value: 'Sport'},
+    {label: 'Ужасы', value: 'Horror'},
+    {label: 'Комедия', value: 'Comedy'},
+    {label: 'Повседневность', value: 'Everyday life'},
+    {label: 'Исторический', value: 'Historical'},
+    {label: 'Меха', value: 'Furs'}
   ]
 
   const filteredAnime =
@@ -57,6 +75,14 @@ export default function AnimePage() {
           : animeList.filter(
               (anime) => anime.status === activeStatus
           )
+
+  const filterGenres =
+      activegStatus === 'all'
+          ? animeList
+          : animeList.filter(
+              (anime) => anime.genres === activeStatus
+          )
+
 
   console.log(animeList)
   return (
@@ -136,12 +162,35 @@ export default function AnimePage() {
             </button>
 
             {isOpen && (
-                <div>FORM<input value={title} onChange={(e) => setTitle(e.target.value)}/>
+                <div>FORM<input placeholder="Введите название" value={title} onChange={(e) => setTitle(e.target.value)}/>
+                  <input placeholder="Введите заметку" value={note} onChange={(e) => setNote(e.target.value)}/>
+                  <select name="status" value={status} onChange={(e) => setStatus(e.target.value)}>
+                    <option value="watching">Смотрю</option>
+                    <option value="completed">Просмотренно</option>
+                    <option value="planned">В планах</option>
+                    <option value="dropped">Брошено</option>
+                    <option value="paused">Приостановлено</option>
+                  </select>
+                  <select name="genres">
+                    <option value="">Экшен</option>
+                    <option value="">Фентези</option>
+                    <option value="">Романтика</option>
+                    <option value="">Научная фантастика</option>
+                    <option value="">Спорт</option>
+                    <option value="">Ужасы</option>
+                    <option value="">Комедия</option>
+                    <option value="">Повседневность</option>
+                    <option value="">Исторический</option>
+                    <option value="">Меха</option>
+                  </select>
+                  <input placeholder="Оценка" value={rating} onChange={(e) => setRating(Number(e.target.value))}/>
+                  <input placeholder="Сколько серий посмотрели"/>
+                  <input placeholder="Всего серий"/>
                   <button onClick={() => {addAnime({
                               id: crypto.randomUUID(),
                               title,
                               notes: '',
-                              status: 'planned',
+                              status: "completed",
                               genres: [],
                               rating: 0,
                               episodesWatched: 0,
@@ -152,6 +201,7 @@ export default function AnimePage() {
                             setTitle('')
                           }}
                       >Добавить</button>
+                  <button onClick={() => setIsOpen(false)}>Закрыть</button>
                     </div>
                 )
             }
