@@ -37,6 +37,27 @@ export default function AnimePage() {
       (state) => state.addAnime
   )
 
+  const removeAnime = useAnimeStore(
+      (state) => state.removeAnime
+  )
+
+  const [activeStatus, setActiveStatus] = useState('all')
+
+  const animeTabs = [
+    { label: 'Все', value: 'all' },
+    { label: 'Смотрю', value: 'watching' },
+    { label: 'Просмотрено', value: 'completed' },
+    { label: 'В планах', value: 'planned' },
+    { label: 'Брошено', value: 'dropped' },
+  ]
+
+  const filteredAnime =
+      activeStatus === 'all'
+          ? animeList
+          : animeList.filter(
+              (anime) => anime.status === activeStatus
+          )
+
   console.log(animeList)
   return (
     <>
@@ -88,8 +109,16 @@ export default function AnimePage() {
 
       {/* Tabs */}
       <div className="tabs">
-        {['Все', 'Смотрю', 'Просмотрено', 'В планах', 'Отложено', 'Брошено'].map((t, i) => (
-          <div key={t} className={`tab-item${i === 0 ? ' active' : ''}`}>{t}</div>
+        {animeTabs.map((tab) => (
+            <div
+                key={tab.value}
+                className={`tab-item ${
+                    activeStatus === tab.value ? 'active' : ''
+                }`}
+                onClick={() => setActiveStatus(tab.value)}
+            >
+              {tab.label}
+            </div>
         ))}
       </div>
 
@@ -106,17 +135,9 @@ export default function AnimePage() {
               + Добавить
             </button>
 
-            {
-                isOpen && (
-                    <div>
-                      FORM
-                      <input
-                          value={title}
-                          onChange={(e) => setTitle(e.target.value)}
-                      />
-                      <button
-                          onClick={() => {
-                            addAnime({
+            {isOpen && (
+                <div>FORM<input value={title} onChange={(e) => setTitle(e.target.value)}/>
+                  <button onClick={() => {addAnime({
                               id: crypto.randomUUID(),
                               title,
                               notes: '',
@@ -130,15 +151,19 @@ export default function AnimePage() {
                             setIsOpen(false)
                             setTitle('')
                           }}
-                      >
-                        Добавить
-                      </button>
+                      >Добавить</button>
                     </div>
                 )
             }
           </div>
           <div className="grid-cards stagger">
-            {animeList.map((a, i) => <MediaCard key={i} {...a} />)}
+            {filteredAnime.map((anime) => (
+                <MediaCard
+                    key={anime.id}
+                    {...anime}
+                    onRemove={() => removeAnime(anime.id)}
+                />
+            ))}
           </div>
         </div>
 
