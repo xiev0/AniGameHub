@@ -31,6 +31,8 @@ export default function AnimePage() {
   const [note, setNote] = useState('')
   const [rating, setRating] = useState(0)
   const [status, setStatus] = useState('planned')
+  const [episodesWatched, setEpisodesWatched] = useState(0)
+  const [totalEpisodes, setTotalEpisodes] = useState(0)
   const [activeStatus, setActiveStatus] = useState('all')
   const [activegStatus, setActivegStatus] = useState('all')
 
@@ -172,29 +174,29 @@ export default function AnimePage() {
                     <option value="paused">Приостановлено</option>
                   </select>
                   <select name="genres">
-                    <option value="">Экшен</option>
-                    <option value="">Фентези</option>
-                    <option value="">Романтика</option>
-                    <option value="">Научная фантастика</option>
-                    <option value="">Спорт</option>
-                    <option value="">Ужасы</option>
-                    <option value="">Комедия</option>
-                    <option value="">Повседневность</option>
-                    <option value="">Исторический</option>
-                    <option value="">Меха</option>
+                    <option value="Action">Экшен</option>
+                    <option value="Fantasy">Фентези</option>
+                    <option value="Romance">Романтика</option>
+                    <option value="Science Fiction">Научная фантастика</option>
+                    <option value="Sport">Спорт</option>
+                    <option value="Horror">Ужасы</option>
+                    <option value="Comedy">Комедия</option>
+                    <option value="Everyday life">Повседневность</option>
+                    <option value="Historical">Исторический</option>
+                    <option value="Furs">Меха</option>
                   </select>
                   <input placeholder="Оценка" value={rating} onChange={(e) => setRating(Number(e.target.value))}/>
-                  <input placeholder="Сколько серий посмотрели"/>
-                  <input placeholder="Всего серий"/>
+                  <input placeholder="Сколько серий посмотрели" value={episodesWatched} onChange={(e) => setEpisodesWatched(Number(e.target.value))}/>
+                  <input placeholder="Всего серий" value={totalEpisodes} onChange={(e) => setEpisodesWatched(Number(e.target.value))}/>
                   <button onClick={() => {addAnime({
                               id: crypto.randomUUID(),
                               title,
                               notes: '',
                               status: "completed",
                               genres: [],
-                              rating: 0,
-                              episodesWatched: 0,
-                              totalEpisodes: 0,
+                              rating,
+                              episodesWatched,
+                              totalEpisodes,
                             })
 
                             setIsOpen(false)
