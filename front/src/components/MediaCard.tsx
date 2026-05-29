@@ -37,7 +37,8 @@ export default function MediaCard({id, title, notes, status, genres, rating, epi
                         status === 'Просмотрено' ? 'green' :
                             status === 'В планах' ? 'primary' : 'pink'
                 }`}>
-              {status}
+
+                  {status}
             </span>
             )}
           </div>

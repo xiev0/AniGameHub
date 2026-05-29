@@ -42,7 +42,7 @@ export const useAnimeStore = create<AnimeStore>()(
         }),
 
         {
-            name: 'anime-storage',
+            name: 'anime-storage-v2',
         }
     )
 )

@@ -3,6 +3,7 @@ import MediaCard from '@/components/MediaCard';
 import StatCard from '@/components/StatCard';
 import {useAnimeStore} from '@/entities/anime/model/anime.store'
 import {useState} from "react";
+import type { AnimeStatus } from '@/entities/anime/model/types'
 
 const listData = [
   { rank: 1,  title: 'Стальной алхимик: Братство', genre: 'Приключения',  eps: 64, score: '9.6', emoji: '⚗️', color: 'linear-gradient(135deg,#2a1a0a,#1a0a20)' },
@@ -28,11 +29,12 @@ export default function AnimePage() {
   const [title, setTitle] = useState('')
   const [note, setNote] = useState('')
   const [rating, setRating] = useState(0)
-  const [status, setStatus] = useState('planned')
+  const [status, setStatus] = useState('watching')
+  const [genres, setGenres] = useState<string[]>(['Action'])
   const [episodesWatched, setEpisodesWatched] = useState(0)
   const [totalEpisodes, setTotalEpisodes] = useState(0)
   const [activeStatus, setActiveStatus] = useState('all')
-  const [activegStatus, setActivegStatus] = useState('all')
+  const [activeGenre, setActiveGenre] = useState('allg')
 
   const animeList = useAnimeStore(
       (state) => state.animeList
@@ -69,19 +71,11 @@ export default function AnimePage() {
     {label: 'Меха', value: 'Furs'}
   ]
 
-  const filteredAnime =
-      activeStatus === 'all'
-          ? animeList
-          : animeList.filter(
-              (anime) => anime.status === activeStatus
-          )
-
-  const filteredGenres =
-      activegStatus === 'all'
-          ? animeList
-          : animeList.filter(
-              (anime) => anime.genres === activeStatus
-          )
+  const filteredAnime = animeList.filter((anime) => {
+    const matchesStatus = activeStatus === 'all' || anime.status === activeStatus
+    const matchesGenre  = activeGenre  === 'allg' || anime.genres.includes(activeGenre)
+    return matchesStatus && matchesGenre
+  })
 
 
   console.log(animeList)
@@ -128,13 +122,11 @@ export default function AnimePage() {
 
       {/* Фильтр Жанров */}
       <div className="flex gap-2 flex-wrap" style={{ marginBottom: 24 }}>
-        {genreTags.map((tabg) => (
+        {genreTags.map(tabg => (
             <div
                 key={tabg.value}
-                className={`tab-item ${
-                    activeStatus === tabg.value ? 'active' : ''
-                }`}
-                onClick={() => setActivegStatus(tabg.value)}
+                className={`tab-item ${activeGenre === tabg.value ? 'active' : ''}`}
+                onClick={() => setActiveGenre(tabg.value)}
             >
               {tabg.label}
             </div>
@@ -173,14 +165,14 @@ export default function AnimePage() {
             {isOpen && (
                 <div>FORM<input placeholder="Введите название" value={title} onChange={(e) => setTitle(e.target.value)}/>
                   <input placeholder="Введите заметку" value={note} onChange={(e) => setNote(e.target.value)}/>
-                  <select name="status" value={status} onChange={(e) => setStatus(e.target.value)}>
+                  <select name="status" value={status} onChange={(e) => setStatus(e.target.value as AnimeStatus)}>
                     <option value="watching">Смотрю</option>
                     <option value="completed">Просмотренно</option>
                     <option value="planned">В планах</option>
                     <option value="dropped">Брошено</option>
                     <option value="paused">Приостановлено</option>
                   </select>
-                  <select name="genres">
+                  <select value={genres[0]} onChange={(e) => setGenres([e.target.value])}>
                     <option value="Action">Экшен</option>
                     <option value="Fantasy">Фентези</option>
                     <option value="Romance">Романтика</option>
@@ -199,8 +191,8 @@ export default function AnimePage() {
                               id: crypto.randomUUID(),
                               title,
                               notes: '',
-                              status: 'dropped',
-                              genres: [],
+                              status,
+                              genres,
                               rating,
                               episodesWatched,
                               totalEpisodes,
@@ -225,15 +217,6 @@ export default function AnimePage() {
             ))}
           </div>
 
-          <div className="grid-cards stagger">
-            {filteredGenres.map((anime) => (
-                <MediaCard
-                    key={anime.id}
-                    {...anime}
-                    onRemove={() => removeAnime(anime.id)}
-                />
-            ))}
-          </div>
         </div>
 
         {/* Sidebar: top list + characters */}
