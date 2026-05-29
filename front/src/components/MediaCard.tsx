@@ -46,7 +46,7 @@ export default function MediaCard({id, title, notes, status, genres, rating, epi
           <div className="media-card-title">{title}</div>
           <div className="media-card-meta">
             {genres && <span>{genres.join(',')}</span>}
-            {totalEpisodes && <><span>·</span><span>{totalEpisodes} эп.</span></>}
+            {totalEpisodes && episodesWatched && <><span>·</span><span>{episodesWatched} / {totalEpisodes} эп.</span></>}
           </div>
           {rating && (
               <div className="media-card-rating">

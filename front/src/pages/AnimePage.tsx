@@ -15,8 +15,6 @@ const listData = [
   { rank: 8,  title: 'Человек-бензопила',                     genre: 'Экшен',     eps: 12, score: '8.7', emoji: '⛓️', color: 'linear-gradient(135deg,#2a0a0a,#1a0a20)' },
 ];
 
-const genreTags = ['Все', 'Экшен', 'Фэнтези', 'Романтика', 'Научная фантастика', 'Спорт', 'Ужасы', 'Комедия', 'Повседневность', 'Исторический', 'Меха'];
-
 const characters = [
   { name: 'Фрирен',      series: 'Фрирен',         emoji: '🧝', color: 'linear-gradient(135deg,#1a0a3a,#2a1a4a)' },
   { name: 'Дэндзи',        series: 'Человек-бензопила',    emoji: '⛓️', color: 'linear-gradient(135deg,#3a0a0a,#2a0a1a)' },
@@ -57,8 +55,8 @@ export default function AnimePage() {
     {label: 'Приостановлено', value: 'paused'}
   ]
 
-  const genresTabs = [
-    {label: 'Все', value: 'all'},
+  const genreTags = [
+    {label: 'Все', value: 'allg'},
     {label: 'Экшен', value: 'Action'},
     {label: 'Фэнтези', value: 'Fantasy'},
     {label: 'Романтика', value: 'Romance'},
@@ -78,7 +76,7 @@ export default function AnimePage() {
               (anime) => anime.status === activeStatus
           )
 
-  const filterGenres =
+  const filteredGenres =
       activegStatus === 'all'
           ? animeList
           : animeList.filter(
@@ -91,7 +89,7 @@ export default function AnimePage() {
     <>
       <Topbar title="Аниме" subtitle="Твоя персональная библиотека аниме" />
 
-      {/* Animated banner */}
+      {/*Баннер*/}
       <div className="hero" style={{
         background: 'linear-gradient(135deg,#1a0a2e 0%,#0d1040 50%,#1a0a3a 100%)',
         minHeight: 200,
@@ -128,14 +126,22 @@ export default function AnimePage() {
         <StatCard icon="⏱" value="247"  label="Серий просмотрено"    accent="cyan" />
       </div>
 
-      {/* Genre filter */}
+      {/* Фильтр Жанров */}
       <div className="flex gap-2 flex-wrap" style={{ marginBottom: 24 }}>
-        {genreTags.map((g, i) => (
-          <span key={g} className={`genre-tag${i === 0 ? ' active' : ''}`}>{g}</span>
+        {genreTags.map((tabg) => (
+            <div
+                key={tabg.value}
+                className={`tab-item ${
+                    activeStatus === tabg.value ? 'active' : ''
+                }`}
+                onClick={() => setActivegStatus(tabg.value)}
+            >
+              {tabg.label}
+            </div>
         ))}
       </div>
 
-      {/* Tabs */}
+      {/* Фильтр списков */}
       <div className="tabs">
         {animeTabs.map((tab) => (
             <div
@@ -163,6 +169,7 @@ export default function AnimePage() {
               + Добавить
             </button>
 
+            {/*Форма добавления*/}
             {isOpen && (
                 <div>FORM<input placeholder="Введите название" value={title} onChange={(e) => setTitle(e.target.value)}/>
                   <input placeholder="Введите заметку" value={note} onChange={(e) => setNote(e.target.value)}/>
@@ -187,12 +194,12 @@ export default function AnimePage() {
                   </select>
                   <input placeholder="Оценка" value={rating} onChange={(e) => setRating(Number(e.target.value))}/>
                   <input placeholder="Сколько серий посмотрели" value={episodesWatched} onChange={(e) => setEpisodesWatched(Number(e.target.value))}/>
-                  <input placeholder="Всего серий" value={totalEpisodes} onChange={(e) => setEpisodesWatched(Number(e.target.value))}/>
+                  <input placeholder="Всего серий" value={totalEpisodes} onChange={(e) => setTotalEpisodes(Number(e.target.value))}/>
                   <button onClick={() => {addAnime({
                               id: crypto.randomUUID(),
                               title,
                               notes: '',
-                              status: "completed",
+                              status: 'dropped',
                               genres: [],
                               rating,
                               episodesWatched,
@@ -210,6 +217,16 @@ export default function AnimePage() {
           </div>
           <div className="grid-cards stagger">
             {filteredAnime.map((anime) => (
+                <MediaCard
+                    key={anime.id}
+                    {...anime}
+                    onRemove={() => removeAnime(anime.id)}
+                />
+            ))}
+          </div>
+
+          <div className="grid-cards stagger">
+            {filteredGenres.map((anime) => (
                 <MediaCard
                     key={anime.id}
                     {...anime}
