@@ -80,9 +80,9 @@ export default function AnimePage() {
           <div className="hero-orb hero-orb-3" style={{ background: 'radial-gradient(circle,#6c8ef7,transparent)', opacity: 0.15 }} />
         </div>
         <div className="hero-stats">
-          <div className="hero-stat"><div className="hero-stat-value">38</div><div className="hero-stat-label">Всего</div></div>
-          <div className="hero-stat"><div className="hero-stat-value">12</div><div className="hero-stat-label">Смотрю</div></div>
-          <div className="hero-stat"><div className="hero-stat-value">20</div><div className="hero-stat-label">Готово</div></div>
+          <div className="hero-stat"><div className="hero-stat-value">{animeCount}</div><div className="hero-stat-label">Всего</div></div>
+          <div className="hero-stat"><div className="hero-stat-value">{watchFilter}</div><div className="hero-stat-label">Смотрю</div></div>
+          <div className="hero-stat"><div className="hero-stat-value">{completedFilter}</div><div className="hero-stat-label">Готово</div></div>
         </div>
         <div className="hero-content">
           <div className="hero-eyebrow">Библиотека аниме</div>
