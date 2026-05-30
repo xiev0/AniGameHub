@@ -5,17 +5,6 @@ import {useAnimeStore} from '@/entities/anime/model/anime.store'
 import {useState} from "react";
 import CreateAnimeForm from "@/components/CreateAnimeForm.tsx";
 
-const listData = [
-  { rank: 1,  title: 'Стальной алхимик: Братство', genre: 'Приключения',  eps: 64, score: '9.6', emoji: '⚗️', color: 'linear-gradient(135deg,#2a1a0a,#1a0a20)' },
-  { rank: 2,  title: 'Врата Штейна',                      genre: 'Научная фантастика',     eps: 24, score: '9.5', emoji: '⏱',  color: 'linear-gradient(135deg,#0a1a2a,#1a0a2a)' },
-  { rank: 3,  title: 'Фрирен',                          genre: 'Фэнтези',    eps: 28, score: '9.4', emoji: '🧝',  color: 'linear-gradient(135deg,#1a0a2a,#0a1a3a)' },
-  { rank: 4,  title: 'Мастер муси',                         genre: 'Сверхъестественное', eps: 26, score: '9.3', emoji: '🌿', color: 'linear-gradient(135deg,#0a2a1a,#1a2a0a)' },
-  { rank: 5,  title: 'Сага о Винланде',                     genre: 'Исторический', eps: 24, score: '9.2', emoji: '🪓',  color: 'linear-gradient(135deg,#2a1a0a,#1a2a1a)' },
-  { rank: 6,  title: 'Магическая битва',                   genre: 'Сверхъестественное', eps: 24, score: '9.0', emoji: '👊', color: 'linear-gradient(135deg,#1a0a1a,#0a0a2a)' },
-  { rank: 7,  title: 'Семья шпиона',                     genre: 'Комедия',     eps: 25, score: '8.8', emoji: '🕵️', color: 'linear-gradient(135deg,#0a1a2a,#2a1a0a)' },
-  { rank: 8,  title: 'Человек-бензопила',                     genre: 'Экшен',     eps: 12, score: '8.7', emoji: '⛓️', color: 'linear-gradient(135deg,#2a0a0a,#1a0a20)' },
-];
-
 const characters = [
   { name: 'Фрирен',      series: 'Фрирен',         emoji: '🧝', color: 'linear-gradient(135deg,#1a0a3a,#2a1a4a)' },
   { name: 'Дэндзи',        series: 'Человек-бензопила',    emoji: '⛓️', color: 'linear-gradient(135deg,#3a0a0a,#2a0a1a)' },
@@ -43,6 +32,8 @@ export default function AnimePage() {
   const positiveNumbers = animeList.filter(anime => anime.rating > 0);
   const sumRating = positiveNumbers.reduce((acc, anime) => acc + anime.rating, 0)
   const avgRating = sumRating / positiveNumbers.length;
+  const copy = animeList.slice();
+  const sortedAnime = copy.sort((a, b) => b.rating - a.rating);
 
   const animeTabs = [
     { label: 'Все', value: 'all' },
@@ -164,17 +155,16 @@ export default function AnimePage() {
           {/* Top rated */}
           <div className="glass-card" style={{ padding: '16px 0' }}>
             <div className="section-title" style={{ padding: '0 16px', marginBottom: 12 }}>Лучшие оценки</div>
-            {listData.map((item) => (
-              <div key={item.rank} className="anime-list-item">
-                <span className="anime-list-rank">{item.rank}</span>
-                <div className="anime-list-thumb" style={{ background: item.color }}>
-                  {item.emoji}
+            {sortedAnime.map((anime, index) => (
+              <div key={index + 1} className="anime-list-item">
+                <span className="anime-list-rank">{index + 1}</span>
+                <div className="anime-list-thumb">
                 </div>
                 <div className="anime-list-info">
-                  <div className="anime-list-title">{item.title}</div>
-                  <div className="anime-list-meta">{item.genre} · {item.eps} эп.</div>
+                  <div className="anime-list-title">{anime.title}</div>
+                  <div className="anime-list-meta">{anime.genres} · {anime.totalEpisodes} эп.</div>
                 </div>
-                <span className="anime-list-score">⭐ {item.score}</span>
+                <span className="anime-list-score">⭐ {anime.rating}</span>
               </div>
             ))}
           </div>
