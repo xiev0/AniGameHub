@@ -35,6 +35,15 @@ export default function AnimePage() {
       (state) => state.removeAnime
   )
 
+  const animeCount = animeList.length;
+  const watchFilter = animeList.filter(anime => anime.status === 'watching').length
+  const completedFilter = animeList.filter(anime => anime.status === 'completed').length
+  const plannedFilter = animeList.filter(anime => anime.status === 'planned').length
+  const episodesWatchedFilter = animeList.reduce((sum, anime) => sum + anime.episodesWatched, 0);
+  const positiveNumbers = animeList.filter(anime => anime.rating > 0);
+  const sumRating = positiveNumbers.reduce((acc, anime) => acc + anime.rating, 0)
+  const avgRating = sumRating / positiveNumbers.length;
+
   const animeTabs = [
     { label: 'Все', value: 'all' },
     { label: 'Смотрю', value: 'watching' },
@@ -64,8 +73,6 @@ export default function AnimePage() {
     return matchesStatus && matchesGenre
   })
 
-
-  console.log(animeList)
   return (
     <>
       <Topbar title="Аниме" subtitle="Твоя персональная библиотека аниме" />
@@ -99,12 +106,12 @@ export default function AnimePage() {
 
       {/* Stats */}
       <div className="grid-stats stagger" style={{ marginBottom: 32 }}>
-        <StatCard icon="🎌" value="38"   label="Всего аниме"      accent="pink" />
-        <StatCard icon="▶️" value="12"   label="Смотрю"         accent="violet" trend="up" trendVal="+3" />
-        <StatCard icon="✅" value="20"   label="Просмотрено"        accent="green" />
-        <StatCard icon="📋" value="6"    label="В планах"    accent="primary" />
-        <StatCard icon="⭐" value="9.1"  label="Средняя оценка"        accent="amber" />
-        <StatCard icon="⏱" value="247"  label="Серий просмотрено"    accent="cyan" />
+        <StatCard icon="🎌" value={animeCount}   label="Всего аниме"      accent="pink" />
+        <StatCard icon="▶️" value={watchFilter}   label="Смотрю"         accent="violet" trend="up" trendVal="+3" />
+        <StatCard icon="✅" value={completedFilter}   label="Просмотрено"        accent="green" />
+        <StatCard icon="📋" value={plannedFilter}    label="В планах"    accent="primary" />
+        <StatCard icon="⭐" value={avgRating}  label="Средняя оценка"        accent="amber" />
+        <StatCard icon="⏱" value={episodesWatchedFilter}  label="Серий просмотрено"    accent="cyan" />
       </div>
 
       {/* Фильтр Жанров */}
