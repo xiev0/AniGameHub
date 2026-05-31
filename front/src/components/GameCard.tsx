@@ -7,12 +7,23 @@ const bannerColors = [
   'linear-gradient(135deg,#1a0a2e 0%,#2e0a1a 100%)',
 ];
 
-export default function GameCard({ title, hours, genres = [], rating, emoji, idx = 0 }) {
+export default function gameCard({id, title, notes, status, genres, rating, hours, onRemove,}: Propsg) {
+    type Props = {
+        id: string
+        title: string
+        notes: string
+        status: string
+        genres: string[]
+        rating: number
+        hours: number
+
+        onRemove?: () => void
+    }
   return (
     <div className="game-card anim-fade-up">
-      <div className="game-card-banner" style={{ background: bannerColors[idx % bannerColors.length] }}>
+      <div className="game-card-banner" >
         <div className="game-banner-placeholder">
-          <span style={{ fontSize: '3.5rem' }}>{emoji}</span>
+          <span style={{ fontSize: '3.5rem' }}></span>
         </div>
         {hours && (
           <div className="game-hours-badge">⏱ {hours} ч.</div>
@@ -33,6 +44,7 @@ export default function GameCard({ title, hours, genres = [], rating, emoji, idx
             <span style={{ fontSize: '0.75rem', fontWeight: 700, color: 'var(--accent-amber)' }}>{rating}</span>
           </div>
         )}
+          <button onClick={onRemove}>Удалить</button>
       </div>
     </div>
   );

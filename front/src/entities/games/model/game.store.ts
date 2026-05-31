@@ -18,10 +18,11 @@ const initialGame: Game[] = [
         status: 'planned',
         genres: ['SoulsLike'],
         rating: 10,
+        hours: 0,
     },
 ]
 
-export const useAnimeStore = create<GameStore>()(
+export const useGameStore = create<GameStore>()(
     persist(
         (set) => ({
             gameList: initialGame,

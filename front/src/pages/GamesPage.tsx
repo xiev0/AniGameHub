@@ -1,6 +1,8 @@
 import Topbar from '@/components/Topbar';
 import GameCard from '@/components/GameCard';
 import StatCard from '@/components/StatCard';
+import {useState} from "react";
+import {useGameStore} from "@/entities/games/model/game.store.ts";
 
 const games = [
   { title: 'Elden Ring',           hours: 148, genres: ['РПГ', 'Souls-like'],     rating: 9.8, emoji: '⚔️', idx: 0 },
@@ -31,6 +33,12 @@ const genres = [
 ];
 
 export default function GamesPage() {
+
+  const addGame = useGameStore((state) => state.addGame);
+
+  const [isOpen, setIsOpen] = useState(false);
+  const [title, setTitle] = useState("");
+
   return (
     <>
       <Topbar title="Игры" subtitle="Твоя игровая библиотека и статистика" />
@@ -84,11 +92,30 @@ export default function GamesPage() {
             <div className="flex gap-2">
               <button className="btn btn-ghost btn-sm">⊞ Сетка</button>
               <button className="btn btn-ghost btn-sm">≡ Список</button>
-              <button className="btn btn-primary btn-sm">+ Добавить</button>
+              <button className="btn btn-primary btn-sm" onClick={() => setIsOpen(true)}>+ Добавить</button>
+
+
+              {isOpen && (
+                  <div>Form <input type="text" value={title} onChange={(e) => setTitle(e.target.value)}/>
+                    addGame({
+                      id: crypto.randomUUID(),
+                      title: "Фрирен";
+                    notes: '',
+                      status: 'playing',
+                      genres: [],
+                      rating: 0,
+                    })</div>
+              )}
             </div>
           </div>
           <div className="grid-games stagger">
-            {games.map((g, i) => <GameCard key={i} {...g} />)}
+            {filteredGame.map((game) => (
+                <GameCard
+                    key={game.id}
+                    {...game}
+                    onRemove={() => removeGame(game.id)}
+                />
+            ))}
           </div>
         </div>
 

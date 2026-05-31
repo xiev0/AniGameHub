@@ -5,6 +5,7 @@ export interface Game {
     status: GameStatus
     genres: string[]
     rating: number
+    hours: number
 }
 
 export type GameStatus  =
