@@ -11,15 +11,6 @@ const screenshots = [
   { game: 'Celeste',         emoji: '🏔️', bg: 'linear-gradient(135deg,#0a1a2a,#1a0a2a)' },
 ];
 
-const genres = [
-  { name: 'РПГ',          count: 4,  color: 'var(--accent-primary)', pct: 80 },
-  { name: 'Экшен',       count: 5,  color: 'var(--accent-amber)',   pct: 100 },
-  { name: 'Souls-like',   count: 3,  color: 'var(--accent-pink)',    pct: 60 },
-  { name: 'Инди',        count: 4,  color: 'var(--accent-green)',   pct: 80 },
-  { name: 'Метроидвания', count: 2,  color: 'var(--accent-cyan)',    pct: 40 },
-  { name: 'JRPG',         count: 2,  color: 'var(--accent-secondary)', pct: 40 },
-];
-
 export function GamesPage() {
 
   const gameList = useGameStore(
@@ -62,7 +53,7 @@ export function GamesPage() {
   const [title, setTitle] = useState("");
   const [notes, setNotes] = useState("");
   const [status, setStatus] = useState('playing')
-  const [genres, setGenres] = useState<string[]>(["Визуальная новелла"])
+  const [genres, setGenres] = useState<string[]>(["RPG"]);
   const [rating, setRating] = useState();
   const [hours, setHours] = useState()
 
@@ -187,7 +178,7 @@ export function GamesPage() {
                             <option value="dropped">Брошено</option>
                             <option value="done">Пройдено</option>
                           </select>
-                          <select name="genres" value={genres} onChange={(e) => setGenres(e.target.value)}>
+                          <select name="genres" value={genres[0]} onChange={(e) => setGenres([e.target.value])}>
                             <option value="Экшен">Экшен</option>
                             <option value="Шутер">Шутер</option>
                             <option value="RPG">RPG</option>
