@@ -28,29 +28,29 @@ export function GamesPage() {
 
   const genreTags = [
     {label: 'Все', value: 'allg'},
-    {label: 'Экшен', value: 'Action'},
-    {label: 'Шутер', value: 'Shooter'},
+    {label: 'Экшен', value: 'Экшен'},
+    {label: 'Шутер', value: 'Шутер'},
     {label: 'RPG', value: 'RPG'},
-    {label: 'Приключение', value: 'Adventure'},
-    {label: 'Стратегия', value: 'Strategy'},
-    {label: 'Соулслайк', value: 'Souls-like'},
-    {label: 'Открытый мир', value: 'Open World'},
-    {label: 'Хоррор', value: 'Survival Horror'},
-    {label: 'Выживание', value: 'Survival'},
-    {label: 'Платформер', value: 'Platformer'},
-    {label: 'Рогалик', value: 'Roguelike'},
-    {label: 'Симулятор', value: 'Simulator'},
-    {label: 'Визуальная новелла', value: 'Visual novella'},
+    {label: 'Приключение', value: 'Приключение'},
+    {label: 'Стратегия', value: 'Стратегия'},
+    {label: 'Соулслайк', value: 'Соулслайк'},
+    {label: 'Открытый мир', value: 'Открытый мир'},
+    {label: 'Хоррор', value: 'Хоррор'},
+    {label: 'Выживание', value: 'Выживание'},
+    {label: 'Платформер', value: 'Платформер'},
+    {label: 'Рогалик', value: 'Рогалик'},
+    {label: 'Симулятор', value: 'Симулятор'},
+    {label: 'Визуальная новелла', value: 'Визуальная новелла'},
     {label: 'Dark Fantasy', value: 'Dark Fantasy'}
   ]
 
   const gameTabs = [
     { label: 'Все', value: 'all' },
-    { label: 'Смотрю', value: 'watching' },
-    { label: 'Просмотрено', value: 'completed' },
+    { label: 'Играю', value: 'playing' },
     { label: 'В планах', value: 'planned' },
+    { label: 'Приостановлено', value: 'stopped' },
     { label: 'Брошено', value: 'dropped' },
-    {label: 'Приостановлено', value: 'paused'}
+    {label: 'Пройдено', value: 'done'}
   ]
 
   const [activeStatus, setActiveStatus] = useState('all')
@@ -60,6 +60,11 @@ export function GamesPage() {
 
   const [isOpen, setIsOpen] = useState(false);
   const [title, setTitle] = useState("");
+  const [notes, setNotes] = useState("");
+  const [status, setStatus] = useState('playing')
+  const [genres, setGenres] = useState([0])
+  const [rating, setRating] = useState(0);
+  const [hours, setHours] = useState(0)
 
   const filteredGame = gameList.filter((Game) => {
     const matchesStatus = activeStatus === 'all' || Game.status === activeStatus
@@ -170,13 +175,36 @@ export function GamesPage() {
                         <div>
                           FORM
                           <input
+                              placeholder="Введите название"
                               value={title}
                               onChange={(e) => setTitle(e.target.value)}
                           />
-                          <input type="text" value={notes} onChange={(e) => setNotes(e.target.value)}/>
-                          <select name="stats" value={status} onChange={(e) => setStatus(e.target.value)}>
-                            <option value=""></option>
+                          <input type="text" placeholder='Введите заметку' value={notes} onChange={(e) => setNotes(e.target.value)}/>
+                          <select name="status" value={status} onChange={(e) => setStatus(e.target.value)}>
+                            <option value="playing">Играю</option>
+                            <option value="planned">В планах</option>
+                            <option value="stopped">Приостановлено</option>
+                            <option value="dropped">Брошено</option>
+                            <option value="done">Пройдено</option>
                           </select>
+                          <select name="genres" value={genres} onChange={(e) => setGenres(e.target.value)}>
+                            <option value="Экшен">Экшен</option>
+                            <option value="Шутер">Шутер</option>
+                            <option value="RPG">RPG</option>
+                            <option value="Приключение">Приключение</option>
+                            <option value="Стратегия">Стратегия</option>
+                            <option value="Соулслайк">Соулслайк</option>
+                            <option value="Открытый мир">Открытый мир</option>
+                            <option value="Хоррор">Хоррор</option>
+                            <option value="Выживание">Выживание</option>
+                            <option value="Платформер">Платформер</option>
+                            <option value="Рогалик">Рогалик</option>
+                            <option value="Симулятор">Симулятор</option>
+                            <option value="Визуальная новелла">Визуальная новелла</option>
+                            <option value="Dark Fantasy">Dark Fantasy</option>
+                          </select>
+                          <input type="text" value={rating} onChange={(e) => setRating(e.target.value)} placeholder="Введите оценку"/>
+                          <input type="text" value={hours} onChange={(e) => setHours(e.target.value)}/>
                           <button
                               onClick={() => {
                                 addGame({
