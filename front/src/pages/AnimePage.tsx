@@ -12,14 +12,15 @@ const characters = [
   { name: 'Ёити Исаги', series: 'Синяя тюрьма',       emoji: '⚽', color: 'linear-gradient(135deg,#0a0a3a,#1a0a3a)' },
 ];
 
-const animeList = useAnimeStore(
-    (state) => state.animeList
-)
-
-const copy = animeList.slice();
-const sortedAnime = copy.sort((a, b) => b.rating - a.rating);
-
 export default function AnimePage() {
+
+  const animeList = useAnimeStore(
+      (state) => state.animeList
+  )
+
+  const copy = animeList.slice();
+  const sortedAnime = copy.sort((a, b) => b.rating - a.rating);
+
   const removeAnime = useAnimeStore(
       (state) => state.removeAnime
   )

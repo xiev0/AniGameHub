@@ -1,7 +1,7 @@
 import { Routes, Route, Navigate } from 'react-router-dom'
 import HomePage    from '@/pages/HomePage';
 import AnimePage   from '@/pages/AnimePage';
-import GamesPage   from '@/pages/GamesPage';
+import {GamesPage} from '@/pages/GamesPage';
 import MusicPage   from '@/pages/MusicPage';
 import ProfilePage from '@/pages/ProfilePage';
 import SettingsPage from '@/pages/SettingsPage';
