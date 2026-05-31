@@ -27,7 +27,7 @@ export default function AnimeBanner() {
         { label: 'Просмотрено', value: 'completed' },
         { label: 'В планах', value: 'planned' },
         { label: 'Брошено', value: 'dropped' },
-        {label: 'Приостановлено', value: 'paused'}
+        { label: 'Приостановлено', value: 'paused'}
     ]
 
     const genreTags = [

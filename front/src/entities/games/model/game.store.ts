@@ -41,7 +41,7 @@ export const useGameStore = create<GameStore>()(
         }),
 
         {
-            name: 'anime-storage-v2',
+            name: 'game-storage',
         }
     )
 )
