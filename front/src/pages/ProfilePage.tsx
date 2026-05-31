@@ -1,5 +1,5 @@
 import Topbar from '../components/Topbar.tsx';
-import StatCard from '../components/StatCard.tsx';
+import {useAnimeStore} from "@/entities/anime/model/anime.store.ts";
 
 const achievements = [
   { icon: '🎌', name: 'Ветеран аниме',    desc: 'Посмотрено 30+ аниме-сериалов',           earned: true,  color: 'linear-gradient(135deg,rgba(244,114,182,0.15),rgba(167,139,250,0.15))',  accent: 'var(--accent-pink)' },
@@ -33,6 +33,7 @@ const activityLog = [
 ];
 
 function ActivityRow({ icon, text, time, accent }) {
+
   const colors = {
     pink:  'rgba(244,114,182,0.12)',
     blue:  'rgba(108,142,247,0.12)',
@@ -59,6 +60,14 @@ function ActivityRow({ icon, text, time, accent }) {
 }
 
 export default function ProfilePage() {
+
+  const animeList = useAnimeStore(
+      (state) => state.animeList
+  )
+  const animeCount = animeList.length;
+  const episodesWatchedFilter = animeList.reduce((sum, anime) => sum + anime.episodesWatched, 0);
+
+
   return (
     <>
       <Topbar title="Профиль" subtitle="Твой аккаунт и достижения" />
@@ -119,8 +128,8 @@ export default function ProfilePage() {
           {/* Quick stats */}
           <div className="flex gap-6 flex-wrap" style={{ marginTop: 24 }}>
             {[
-              { label: 'Аниме',    value: '38',   icon: '🎌', accent: 'var(--accent-pink)' },
-              { label: 'Серии',    value: '247',  icon: '▶️',  accent: 'var(--accent-secondary)' },
+              { label: 'Аниме',    value: animeCount,   icon: '🎌', accent: 'var(--accent-pink)' },
+              { label: 'Серии',    value: episodesWatchedFilter,  icon: '▶️',  accent: 'var(--accent-secondary)' },
               { label: 'Игры',     value: '9',    icon: '🎮', accent: 'var(--accent-amber)' },
               { label: 'Часы',     value: '610',  icon: '⏱', accent: 'var(--accent-primary)' },
               { label: 'Треки',    value: '1.2k', icon: '🎵', accent: 'var(--accent-green)' },
