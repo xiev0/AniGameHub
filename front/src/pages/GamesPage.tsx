@@ -29,15 +29,19 @@ export function GamesPage() {
   const genreTags = [
     {label: 'Все', value: 'allg'},
     {label: 'Экшен', value: 'Action'},
-    {label: 'Фэнтези', value: 'Fantasy'},
-    {label: 'Романтика', value: 'Romance'},
-    {label: 'Научная Фантастика', value: 'Science Fiction'},
-    {label: 'Спорт', value: 'Sport'},
-    {label: 'Ужасы', value: 'Horror'},
-    {label: 'Комедия', value: 'Comedy'},
-    {label: 'Повседневность', value: 'Everyday life'},
-    {label: 'Исторический', value: 'Historical'},
-    {label: 'Меха', value: 'Furs'}
+    {label: 'Шутер', value: 'Shooter'},
+    {label: 'RPG', value: 'RPG'},
+    {label: 'Приключение', value: 'Adventure'},
+    {label: 'Стратегия', value: 'Strategy'},
+    {label: 'Соулслайк', value: 'Souls-like'},
+    {label: 'Открытый мир', value: 'Open World'},
+    {label: 'Хоррор', value: 'Survival Horror'},
+    {label: 'Выживание', value: 'Survival'},
+    {label: 'Платформер', value: 'Platformer'},
+    {label: 'Рогалик', value: 'Roguelike'},
+    {label: 'Симулятор', value: 'Simulator'},
+    {label: 'Визуальная новелла', value: 'Visual novella'},
+    {label: 'Dark Fantasy', value: 'Dark Fantasy'}
   ]
 
   const gameTabs = [
@@ -169,6 +173,10 @@ export function GamesPage() {
                               value={title}
                               onChange={(e) => setTitle(e.target.value)}
                           />
+                          <input type="text" value={notes} onChange={(e) => setNotes(e.target.value)}/>
+                          <select name="stats" value={status} onChange={(e) => setStatus(e.target.value)}>
+                            <option value=""></option>
+                          </select>
                           <button
                               onClick={() => {
                                 addGame({
@@ -187,6 +195,8 @@ export function GamesPage() {
                           >
                             Добавить
                           </button>
+
+                          <button onClick={() => setIsOpen(false)}>Закрыть</button>
                         </div>
                     )
                 }
