@@ -62,9 +62,9 @@ export function GamesPage() {
   const [title, setTitle] = useState("");
   const [notes, setNotes] = useState("");
   const [status, setStatus] = useState('playing')
-  const [genres, setGenres] = useState([0])
-  const [rating, setRating] = useState(0);
-  const [hours, setHours] = useState(0)
+  const [genres, setGenres] = useState<string[]>(["Визуальная новелла"])
+  const [rating, setRating] = useState();
+  const [hours, setHours] = useState()
 
   const filteredGame = gameList.filter((Game) => {
     const matchesStatus = activeStatus === 'all' || Game.status === activeStatus
@@ -204,17 +204,17 @@ export function GamesPage() {
                             <option value="Dark Fantasy">Dark Fantasy</option>
                           </select>
                           <input type="text" value={rating} onChange={(e) => setRating(e.target.value)} placeholder="Введите оценку"/>
-                          <input type="text" value={hours} onChange={(e) => setHours(e.target.value)}/>
+                          <input type="text" placeholder="Сколько часов сыграли?" value={hours} onChange={(e) => setHours(e.target.value)}/>
                           <button
                               onClick={() => {
                                 addGame({
                                   id: crypto.randomUUID(),
                                   title,
-                                  notes: '',
-                                  status: 'planned',
-                                  genres: [],
-                                  rating: 0,
-                                  hours: 0,
+                                  notes,
+                                  status,
+                                  genres,
+                                  rating,
+                                  hours,
                                 })
 
                                 setIsOpen(false)
