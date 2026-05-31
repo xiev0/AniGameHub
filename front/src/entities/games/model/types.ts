@@ -1,10 +1,10 @@
 export interface Game {
     id: string
     title: string
+    notes: string
     status: GameStatus
     genres: string[]
     rating: number
-    notes: string
 }
 
 export type GameStatus  =
